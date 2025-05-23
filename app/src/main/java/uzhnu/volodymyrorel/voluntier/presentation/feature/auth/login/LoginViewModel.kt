@@ -1,0 +1,35 @@
+package uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
+import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
+import javax.inject.Inject
+
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val navigator: Navigator,
+    private val authRepository: AuthRepository
+) : ViewModel() {
+
+    private val _state = MutableStateFlow(LoginStateUi.DEFAULT)
+    val state: StateFlow<LoginStateUi>; get() = _state
+
+    fun onLoginClicked() {
+        val state = state.value
+        viewModelScope.launch {
+            authRepository.login(
+                email = state.email.text.toString().trim(),
+                password = state.password.text.toString(),
+            )
+        }
+    }
+
+    fun onSignUpClicked() {
+        navigator.navigateToSignUpScreen()
+    }
+}

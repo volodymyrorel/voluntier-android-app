@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.ui.theme
+package uzhnu.volodymyrorel.voluntier.presentation.core.theme
 
 import androidx.compose.ui.graphics.Color
 
