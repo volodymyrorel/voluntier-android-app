@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashRoute
 
@@ -27,6 +29,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable<LoginConstants.Args> {
             LoginRoute()
+        }
+        composable<SignUpConstants.Args> {
+            SignUpRoute()
         }
     }
 }

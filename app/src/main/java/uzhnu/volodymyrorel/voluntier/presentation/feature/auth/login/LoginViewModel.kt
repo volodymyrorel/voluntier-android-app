@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
@@ -23,13 +24,21 @@ class LoginViewModel @Inject constructor(
         val state = state.value
         viewModelScope.launch {
             authRepository.login(
-                email = state.email.text.toString().trim(),
-                password = state.password.text.toString(),
+                email = state.email.trim(),
+                password = state.password,
             )
         }
     }
 
     fun onSignUpClicked() {
         navigator.navigateToSignUpScreen()
+    }
+
+    fun onEmailChanged(email: String) {
+        _state.update { it.copy(email = email) }
+    }
+
+    fun onPasswordChanged(password: String) {
+        _state.update { it.copy(password = password) }
     }
 }

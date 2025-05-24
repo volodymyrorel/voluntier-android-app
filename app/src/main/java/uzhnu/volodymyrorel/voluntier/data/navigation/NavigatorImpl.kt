@@ -1,9 +1,11 @@
 package uzhnu.volodymyrorel.voluntier.data.navigation
 
 import android.app.Activity
+import android.util.Log
 import androidx.navigation.NavHostController
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
 import javax.inject.Inject
 
 internal class NavigatorImpl @Inject constructor() : Navigator {
@@ -36,10 +38,10 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
     }
 
     override fun navigateToSignUpScreen() {
-
+        navHostController?.navigate(route = SignUpConstants.Args)
     }
 
     override fun navigateToHomeScreen() {
-
+        Log.d("test", "user is navigated to HomeScreen")
     }
 }

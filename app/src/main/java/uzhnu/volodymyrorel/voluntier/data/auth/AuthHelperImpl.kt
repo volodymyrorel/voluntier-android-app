@@ -11,12 +11,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
+import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.auth.entity.User
 import javax.inject.Inject
 
 internal class AuthHelperImpl @Inject constructor(
     @ApplicationContext private val context: Context,
-//    private var authRepository: AuthRepository
+    private var authRepository: AuthRepository
 ) : AuthHelper {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
@@ -33,8 +34,7 @@ internal class AuthHelperImpl @Inject constructor(
     override val user: User; get() = requireNotNull(_user)
 
     override fun isLoggedIn(): Boolean {
-        return false
-//        return authRepository.isLoggedIn() && _user != null
+        return authRepository.isLoggedIn() && _user != null
     }
 
     override suspend fun storeUser(user: User) {

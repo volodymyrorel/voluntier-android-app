@@ -5,6 +5,7 @@ plugins {
     id(Dependencies.Plugins.hilt)
     id(Dependencies.Plugins.kotlinSerialization)
     id(Dependencies.Plugins.composeCompiler)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -57,4 +58,9 @@ dependencies {
 
     //Data Store
     implementation(Dependencies.DataStore.dataStorePreferences)
+
+    //Firebase
+    implementation(platform(Dependencies.Firebase.bom))
+    implementation(Dependencies.Firebase.auth)
+    implementation(Dependencies.Firebase.firestore)
 }

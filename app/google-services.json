@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "497406177497",
+    "project_id": "voluntier-android-app",
+    "storage_bucket": "voluntier-android-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497406177497:android:c8100cd24cf57ac8a34ec8",
+        "android_client_info": {
+          "package_name": "uzhnu.volodymyrorel.voluntier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmydpTQgHLtkL9BV_c5Pf0QnXaj5ve4xA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

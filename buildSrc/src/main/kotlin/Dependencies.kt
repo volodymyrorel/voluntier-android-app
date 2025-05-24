@@ -85,8 +85,8 @@ object Dependencies {
         const val bom = "com.google.firebase:firebase-bom:33.7.0"
         const val analytics = "com.google.firebase:firebase-analytics"
         const val crashlytics = "com.google.firebase:firebase-crashlytics"
-        const val auth = "com.google.firebase:firebase-auth"
-        const val firestore = "com.google.firebase:firebase-firestore"
+        const val auth = "com.google.firebase:firebase-auth-ktx:23.2.1"
+        const val firestore = "com.google.firebase:firebase-firestore-ktx:25.1.4"
         const val storage = "com.google.firebase:firebase-storage"
     }
 
