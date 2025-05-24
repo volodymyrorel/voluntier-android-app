@@ -7,14 +7,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
+import uzhnu.volodymyrorel.voluntier.domain.auth.LoginUseCase
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val navigator: Navigator,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val authHelper: AuthHelper,
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LoginStateUi.DEFAULT)
@@ -23,10 +27,8 @@ class LoginViewModel @Inject constructor(
     fun onLoginClicked() {
         val state = state.value
         viewModelScope.launch {
-            authRepository.login(
-                email = state.email.trim(),
-                password = state.password,
-            )
+            val login = loginUseCase(state.email, state.password)
+            if (login != null) navigator.navigateToHomeScreen()
         }
     }
 
