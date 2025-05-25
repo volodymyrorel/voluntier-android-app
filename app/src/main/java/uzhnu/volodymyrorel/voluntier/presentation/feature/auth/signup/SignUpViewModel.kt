@@ -1,20 +1,42 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import uzhnu.volodymyrorel.voluntier.domain.auth.SignUpUseCase
+import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(): ViewModel() {
+class SignUpViewModel @Inject constructor(
+    val navigator: Navigator,
+    val signUpUseCase: SignUpUseCase
+): ViewModel() {
 
     private val _state = MutableStateFlow(SignUpStateUi.DEFAULT)
     val state: StateFlow<SignUpStateUi>; get() = _state
 
     fun onSignUpClicked() {
-        //todo
+        val state = state.value
+        viewModelScope.launch {
+            val signUp = signUpUseCase(
+                email = state.email,
+                password = state.password,
+                isOrganization = state.isOrganization,
+                userSurname = state.userSurname,
+                userName = state.userName,
+                userFatherName = state.userFatherName,
+                orgPublicName = state.orgPublicName,
+                orgGovName = state.orgGovName,
+                orgType = state.orgType,
+                orgCode = state.orgCode
+            )
+            if (signUp != null) navigator.navigateToHomeScreen()
+        }
     }
 
     fun onVolunteerClicked() {
