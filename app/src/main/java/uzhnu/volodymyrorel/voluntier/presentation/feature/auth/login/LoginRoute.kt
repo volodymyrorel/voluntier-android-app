@@ -31,9 +31,11 @@ import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+
     val state by viewModel.state.collectAsStateWithLifecycle()
+
     LoginScreen(
-        state,
+        stateUi = state,
         onLoginClicked = viewModel::onLoginClicked,
         onSignUpClicked = viewModel::onSignUpClicked,
         onEmailChanged = viewModel::onEmailChanged,

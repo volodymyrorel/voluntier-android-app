@@ -20,7 +20,8 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             delay(600)
             if (authHelper.isLoggedIn()) {
-                navigator.navigateToHomeScreen()
+//                navigator.navigateToHomeScreen()
+                navigator.navigateToLoginScreen()
             } else {
                 navigator.navigateToLoginScreen()
             }
