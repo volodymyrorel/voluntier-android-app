@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uzhnu.volodymyrorel.voluntier.data.auth.AuthRepositoryImpl
+import uzhnu.volodymyrorel.voluntier.demand.DemandRepositoryImpl
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
+import uzhnu.volodymyrorel.voluntier.domain.demand.DemandRepository
 import javax.inject.Singleton
 
 @Module
@@ -15,4 +17,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     internal abstract fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+    @Singleton
+    @Binds
+    internal abstract fun provideDemandRepository(impl: DemandRepositoryImpl): DemandRepository
 }

@@ -10,6 +10,10 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConsta
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashRoute
 
@@ -32,6 +36,12 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable<SignUpConstants.Args> {
             SignUpRoute()
+        }
+        composable<MainScreenConstants.Args> {
+            MainRoute()
+        }
+        composable<CreateNewRequestConstants.Args> {
+            CreateNewRequestRoute()
         }
     }
 }

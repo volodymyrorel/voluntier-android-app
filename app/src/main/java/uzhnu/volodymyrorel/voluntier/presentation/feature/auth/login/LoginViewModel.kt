@@ -28,7 +28,7 @@ class LoginViewModel @Inject constructor(
         val state = state.value
         viewModelScope.launch {
             val login = loginUseCase(state.email, state.password)
-            if (login != null) navigator.navigateToHomeScreen()
+            if (login != null) navigator.navigateToMainScreen()
         }
     }
 

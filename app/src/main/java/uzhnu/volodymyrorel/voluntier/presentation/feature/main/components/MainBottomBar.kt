@@ -1,0 +1,49 @@
+package uzhnu.volodymyrorel.voluntier.presentation.feature.main.components
+
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.homeRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.search.searchRoute
+
+@Composable
+fun MainBottomBar(navHostController: NavHostController) {
+
+    val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    val isHomeSelected = currentDestination?.hierarchy?.any { it.route == homeRoute } == true
+    val iSearchSelected = currentDestination?.hierarchy?.any { it.route == searchRoute } == true
+    val isUserPageSelected = currentDestination?.hierarchy?.any { it.route == profileRoute } == true
+
+    NavigationBar {
+
+        NavigationBarItem(
+            selected = iSearchSelected,
+            icon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
+            onClick = { navHostController.navigate(searchRoute) }
+        )
+
+        NavigationBarItem(
+            selected = isHomeSelected,
+            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = null) },
+            onClick = { navHostController.navigate(homeRoute) }
+        )
+
+        NavigationBarItem(
+            selected = isUserPageSelected,
+            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = null) },
+            onClick = { navHostController.navigate(profileRoute) }
+        )
+    }
+}

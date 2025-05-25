@@ -21,7 +21,7 @@ class SplashViewModel @Inject constructor(
             delay(600)
             if (authHelper.isLoggedIn()) {
 //                navigator.navigateToHomeScreen()
-                navigator.navigateToLoginScreen()
+                navigator.navigateToMainScreen()
             } else {
                 navigator.navigateToLoginScreen()
             }

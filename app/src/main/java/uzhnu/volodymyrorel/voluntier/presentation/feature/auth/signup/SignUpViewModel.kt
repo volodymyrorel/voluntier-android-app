@@ -35,7 +35,7 @@ class SignUpViewModel @Inject constructor(
                 orgType = state.orgType,
                 orgCode = state.orgCode
             )
-            if (signUp != null) navigator.navigateToHomeScreen()
+            if (signUp != null) navigator.navigateToMainScreen()
         }
     }
 

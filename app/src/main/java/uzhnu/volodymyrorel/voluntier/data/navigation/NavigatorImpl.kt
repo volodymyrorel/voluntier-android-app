@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
 import javax.inject.Inject
 
 internal class NavigatorImpl @Inject constructor() : Navigator {
@@ -41,7 +43,12 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
         navHostController?.navigate(route = SignUpConstants.Args)
     }
 
-    override fun navigateToHomeScreen() {
+    override fun navigateToMainScreen() {
+        navHostController?.navigate(route = MainScreenConstants.Args)
         Log.d("test", "user is navigated to HomeScreen")
+    }
+
+    override fun navigateToCreateNewRequestScreen() {
+        navHostController?.navigate(route = CreateNewRequestConstants.Args)
     }
 }

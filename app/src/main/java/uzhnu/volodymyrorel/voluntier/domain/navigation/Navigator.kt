@@ -13,5 +13,7 @@ interface Navigator {
 
     fun navigateToLoginScreen()
     fun navigateToSignUpScreen()
-    fun navigateToHomeScreen()
+    fun navigateToMainScreen()
+    fun navigateToCreateNewRequestScreen()
+
 }
