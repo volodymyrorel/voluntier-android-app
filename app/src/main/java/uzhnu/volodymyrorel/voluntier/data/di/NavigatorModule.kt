@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.di
+package uzhnu.volodymyrorel.voluntier.data.di
 
 import dagger.Binds
 import dagger.Module

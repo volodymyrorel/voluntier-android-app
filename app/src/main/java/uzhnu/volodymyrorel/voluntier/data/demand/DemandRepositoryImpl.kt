@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.demand
+package uzhnu.volodymyrorel.voluntier.data.demand
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore

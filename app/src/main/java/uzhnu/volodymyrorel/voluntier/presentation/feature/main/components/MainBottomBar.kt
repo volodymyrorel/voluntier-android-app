@@ -14,7 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.homeRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.search.searchRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.organizationsRoute
 
 @Composable
 fun MainBottomBar(navHostController: NavHostController) {
@@ -23,7 +23,7 @@ fun MainBottomBar(navHostController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     val isHomeSelected = currentDestination?.hierarchy?.any { it.route == homeRoute } == true
-    val iSearchSelected = currentDestination?.hierarchy?.any { it.route == searchRoute } == true
+    val iSearchSelected = currentDestination?.hierarchy?.any { it.route == organizationsRoute } == true
     val isUserPageSelected = currentDestination?.hierarchy?.any { it.route == profileRoute } == true
 
     NavigationBar {
@@ -31,7 +31,7 @@ fun MainBottomBar(navHostController: NavHostController) {
         NavigationBarItem(
             selected = iSearchSelected,
             icon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
-            onClick = { navHostController.navigate(searchRoute) }
+            onClick = { navHostController.navigate(organizationsRoute) }
         )
 
         NavigationBarItem(

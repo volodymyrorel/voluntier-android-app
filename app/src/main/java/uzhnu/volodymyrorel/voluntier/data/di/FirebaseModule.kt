@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.di
+package uzhnu.volodymyrorel.voluntier.data.di
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

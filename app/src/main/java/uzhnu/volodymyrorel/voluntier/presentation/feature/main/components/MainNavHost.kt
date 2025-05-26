@@ -9,8 +9,8 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.HomeRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.homeRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.ProfileRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.search.SearchRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.search.searchRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.OrganizationsRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.organizationsRoute
 
 @Composable
 fun MainNavHost(
@@ -27,8 +27,8 @@ fun MainNavHost(
             HomeRoute()
         }
 
-        composable(searchRoute) {
-            SearchRoute()
+        composable(organizationsRoute) {
+            OrganizationsRoute()
         }
 
         composable(profileRoute) {
