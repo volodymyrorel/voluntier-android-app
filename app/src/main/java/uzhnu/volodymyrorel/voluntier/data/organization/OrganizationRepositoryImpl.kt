@@ -33,4 +33,19 @@ class OrganizationRepositoryImpl @Inject constructor(
                 }
         }
     }
+
+    override suspend fun getOrganization(id: String): Organization? {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("users")
+                .document(id)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(organizationMapper.mapToOrganization(response))
+                }
+                .addOnFailureListener { error ->
+                    continuation.resume(null)
+                }
+        }
+    }
 }

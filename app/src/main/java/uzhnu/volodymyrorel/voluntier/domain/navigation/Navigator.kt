@@ -15,5 +15,5 @@ interface Navigator {
     fun navigateToSignUpScreen()
     fun navigateToMainScreen()
     fun navigateToCreateNewRequestScreen()
-
+    fun navigateToOrgPageScreen(uid: String)
 }

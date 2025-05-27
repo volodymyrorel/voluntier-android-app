@@ -8,6 +8,7 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConsta
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageScreenConstants
 import javax.inject.Inject
 
 internal class NavigatorImpl @Inject constructor() : Navigator {
@@ -50,5 +51,9 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
 
     override fun navigateToCreateNewRequestScreen() {
         navHostController?.navigate(route = CreateNewRequestConstants.Args)
+    }
+
+    override fun navigateToOrgPageScreen(uid: String) {
+        navHostController?.navigate(route = OrgPageScreenConstants.Args(uid))
     }
 }

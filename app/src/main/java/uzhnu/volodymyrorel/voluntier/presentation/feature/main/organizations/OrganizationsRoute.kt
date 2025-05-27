@@ -32,13 +32,15 @@ fun OrganizationsRoute(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     OrganizationsScreen(
-        state = state
+        state = state,
+        onOrganizationClicked = viewModel::onOrganizationClicked
     )
 }
 
 @Composable
 fun OrganizationsScreen(
-    state: OrganizationsStateUi
+    state: OrganizationsStateUi,
+    onOrganizationClicked: (String) -> Unit
 ) {
 
     Scaffold(
@@ -62,7 +64,7 @@ fun OrganizationsScreen(
             }) { item ->
                 OrganizationItem(
                     organization = item,
-                    onOrganizationClicked = {}
+                    onOrganizationClicked = onOrganizationClicked
                 )
             }
         }
@@ -74,7 +76,8 @@ fun OrganizationsScreen(
 fun OrganizationsScreenPreview() {
     AppTheme {
         OrganizationsScreen(
-            state = OrganizationsStateUi.DEFAULT
+            state = OrganizationsStateUi.DEFAULT,
+            onOrganizationClicked = {}
         )
     }
 }

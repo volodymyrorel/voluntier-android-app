@@ -7,12 +7,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.domain.organization.OrganizationRepository
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.mapper.mapToUi
 import javax.inject.Inject
 
 @HiltViewModel
 class OrganizationsScreenViewModel @Inject constructor(
+    val navigator: Navigator,
     val organizationRepository: OrganizationRepository
 ) : ViewModel() {
 
@@ -27,6 +29,6 @@ class OrganizationsScreenViewModel @Inject constructor(
     }
 
     fun onOrganizationClicked(orgId: String) {
-
+        navigator.navigateToOrgPageScreen(orgId)
     }
 }

@@ -14,6 +14,8 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.Cre
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageScreenConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashRoute
 
@@ -42,6 +44,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable<CreateNewRequestConstants.Args> {
             CreateNewRequestRoute()
+        }
+        composable<OrgPageScreenConstants.Args> {
+            OrgPageRoute()
         }
     }
 }

@@ -61,6 +61,21 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getCurrentUserRole(): String {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("users")
+                .document(auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(response.data?.get("role") as String)
+                }
+                .addOnFailureListener { error ->
+                    continuation.resume("user")
+                }
+        }
+    }
+
     override suspend fun createUser(_id: String, email: String, surname: String, name: String, fatherName: String) : String? {
         return suspendCoroutine { continuation ->
             val userDocument = hashMapOf(
