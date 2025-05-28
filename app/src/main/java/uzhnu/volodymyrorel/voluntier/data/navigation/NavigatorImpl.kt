@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.CreateNewAnswerConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageScreenConstants
@@ -55,5 +56,9 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
 
     override fun navigateToOrgPageScreen(uid: String) {
         navHostController?.navigate(route = OrgPageScreenConstants.Args(uid))
+    }
+
+    override fun navigateToCreateNewAnswerScreen(demandId: String) {
+        navHostController?.navigate(route = CreateNewAnswerConstants.Args(demandId))
     }
 }

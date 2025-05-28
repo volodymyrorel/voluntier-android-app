@@ -1,5 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -76,6 +77,7 @@ fun SignUpScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = Color.LightGray)
             .padding(24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally

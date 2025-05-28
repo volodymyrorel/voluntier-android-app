@@ -11,4 +11,8 @@ interface DemandRepository {
     ) : Unit?
 
     suspend fun getOrganizationDemands(orgId: String): List<Demand>
+
+    suspend fun updateDemandCurrentSum(demandId: String, sum: Double): Unit?
+
+    suspend fun getDemandCurrentSum(demandId: String): Double
 }

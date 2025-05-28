@@ -16,4 +16,5 @@ interface Navigator {
     fun navigateToMainScreen()
     fun navigateToCreateNewRequestScreen()
     fun navigateToOrgPageScreen(uid: String)
+    fun navigateToCreateNewAnswerScreen(demandId: String)
 }

@@ -2,6 +2,7 @@ package uzhnu.volodymyrorel.voluntier.data.auth
 
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository

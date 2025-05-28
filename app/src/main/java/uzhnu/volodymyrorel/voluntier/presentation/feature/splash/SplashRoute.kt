@@ -21,6 +21,6 @@ fun SplashRoute(
 @Composable
 fun SplashScreen() {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Splash", fontSize = 40.sp)
+        Text("VolunTier", fontSize = 40.sp)
     }
 }

@@ -6,6 +6,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -14,10 +18,13 @@ import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.auth.entity.User
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 internal class AuthHelperImpl @Inject constructor(
     @ApplicationContext private val context: Context,
-    private var authRepository: AuthRepository
+    private var authRepository: AuthRepository,
+    private val firestore: FirebaseFirestore
 ) : AuthHelper {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
@@ -49,6 +56,21 @@ internal class AuthHelperImpl @Inject constructor(
             it.remove(Keys.user)
         }
         _user = null
+    }
+
+    override suspend fun getCurrentUserData(): DocumentSnapshot? {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("users")
+                .document(Firebase.auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(response)
+                }
+                .addOnFailureListener {
+                    continuation.resume(null)
+                }
+        }
     }
 
     private companion object {

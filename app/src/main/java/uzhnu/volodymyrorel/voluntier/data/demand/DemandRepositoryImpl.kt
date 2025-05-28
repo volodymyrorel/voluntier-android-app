@@ -1,6 +1,5 @@
 package uzhnu.volodymyrorel.voluntier.data.demand
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import uzhnu.volodymyrorel.voluntier.data.demand.mapper.DemandMapper
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
@@ -53,6 +52,35 @@ class DemandRepositoryImpl @Inject constructor(
                 }
                 .addOnFailureListener { error ->
                     continuation.resume(emptyList())
+                }
+        }
+    }
+
+    override suspend fun updateDemandCurrentSum(demandId: String, sum: Double): Unit? {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("demands")
+                .document(demandId)
+                .update(
+                    mapOf("currentSum" to sum)
+                )
+                .addOnSuccessListener {
+                    continuation.resume(Unit)
+                }
+                .addOnFailureListener {
+                    continuation.resume(null)
+                }
+        }
+    }
+
+    override suspend fun getDemandCurrentSum(demandId: String): Double {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("demands")
+                .document(demandId)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(response.data!!.get("currentSum") as Double)
                 }
         }
     }

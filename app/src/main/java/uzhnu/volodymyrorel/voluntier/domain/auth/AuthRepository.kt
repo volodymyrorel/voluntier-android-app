@@ -1,5 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.domain.auth
 
+import com.google.firebase.firestore.DocumentSnapshot
 import uzhnu.volodymyrorel.voluntier.domain.auth.entity.User
 
 interface AuthRepository {

@@ -10,6 +10,8 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConsta
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.CreateNewAnswerConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.CreateNewAnswerRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainRoute
@@ -47,6 +49,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable<OrgPageScreenConstants.Args> {
             OrgPageRoute()
+        }
+        composable<CreateNewAnswerConstants.Args> {
+            CreateNewAnswerRoute()
         }
     }
 }
