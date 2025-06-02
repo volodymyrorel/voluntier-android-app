@@ -15,4 +15,6 @@ interface DemandRepository {
     suspend fun updateDemandCurrentSum(demandId: String, sum: Double): Unit?
 
     suspend fun getDemandCurrentSum(demandId: String): Double
+
+    suspend fun getDemandById(demandId: String): Demand?
 }

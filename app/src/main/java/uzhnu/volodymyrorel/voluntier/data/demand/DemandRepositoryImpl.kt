@@ -31,11 +31,9 @@ class DemandRepositoryImpl @Inject constructor(
                 .collection("demands")
                 .add(demandDocument)
                 .addOnSuccessListener {
-//                    Log.d("test", "User data has been stored. User ID: ${}")
                     continuation.resume(Unit)
                 }
                 .addOnFailureListener { error ->
-//                    Log.d("test", "User data not stored. Error: ${error.message}")
                     continuation.resume(null)
                 }
         }
@@ -81,6 +79,21 @@ class DemandRepositoryImpl @Inject constructor(
                 .get()
                 .addOnSuccessListener { response ->
                     continuation.resume(response.data!!.get("currentSum") as Double)
+                }
+        }
+    }
+
+    override suspend fun getDemandById(demandId: String): Demand? {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("demands")
+                .document(demandId)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(demandMapper.mapToDemand(response))
+                }
+                .addOnFailureListener { error ->
+                    continuation.resume(null)
                 }
         }
     }

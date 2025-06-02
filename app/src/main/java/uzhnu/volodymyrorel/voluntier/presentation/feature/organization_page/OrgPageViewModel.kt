@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.demand.DemandRepository
+import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.domain.organization.OrganizationRepository
 import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.mapper.mapToUi
 import java.time.format.DateTimeFormatter
@@ -19,9 +20,10 @@ import javax.inject.Inject
 @HiltViewModel
 class OrgPageViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    val organizationRepository: OrganizationRepository,
-    val demandRepository: DemandRepository,
-    val authRepository: AuthRepository
+    private val organizationRepository: OrganizationRepository,
+    private val demandRepository: DemandRepository,
+    private val authRepository: AuthRepository,
+    private val navigator: Navigator
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(OrgPageStateUi(uid = savedStateHandle.toRoute<OrgPageScreenConstants.Args>().uid))
@@ -51,14 +53,14 @@ class OrgPageViewModel @Inject constructor(
     }
 
     fun onFundraisingClicked(id: String) {
-
+        navigator.navigateToCreateNewAnswerScreen(id)
     }
 
     fun onMaterialClicked(id: String) {
-
+        navigator.navigateToCreateNewAnswerScreen(id)
     }
 
     fun onVolunteersClicked(id: String) {
-
+        navigator.navigateToCreateNewAnswerScreen(id)
     }
 }

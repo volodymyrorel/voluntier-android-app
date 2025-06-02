@@ -2,13 +2,11 @@ package uzhnu.volodymyrorel.voluntier.data.auth
 
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.auth.entity.User
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
-import java.time.LocalDateTime
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
