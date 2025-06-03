@@ -12,16 +12,18 @@ class CreateFundAnswerUseCase @Inject constructor(
 
     suspend operator fun invoke(
         demandId: String,
-        sum: Double
+        sum: Double,
+        description: String?
     ) : Unit? {
         val currentSum = demandRepository.getDemandCurrentSum(demandId)
-        val result1 = answerRepository.createFinancialAnswer(
+        val result1 = answerRepository.createFundraisingAnswer(
             demandId = demandId,
-            sum = sum
+            sum = sum,
+            description = description
         )
         val result2 = demandRepository.updateDemandCurrentSum(demandId = demandId, sum = currentSum + sum)
-        if (result1 != null && result2 != null)
-            return Unit
-        else return null
+        return if (result1 != null && result2 != null)
+            Unit
+        else null
     }
 }

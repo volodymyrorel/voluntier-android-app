@@ -15,15 +15,59 @@ class DemandRepositoryImpl @Inject constructor(
     val demandMapper: DemandMapper
 ): DemandRepository {
 
-    override suspend fun createNewDemand(type: String, title: String, description: String?, sum: Double?): Unit? {
+    override suspend fun createNewFundraisingDemand(title: String, description: String?, sum: Double?): Unit? {
         return suspendCoroutine { continuation ->
             val demandDocument = hashMapOf(
                 "ownerId" to authHelper.user.id,
-                "type" to type,
+                "type" to Demand.TYPE_FUNDRAISING,
                 "title" to title,
                 "description" to description,
                 "targetSum" to sum,
                 "currentSum" to 0.0,
+                "createdAt" to System.currentTimeMillis(),
+                "updatedAt" to System.currentTimeMillis()
+            )
+            firestore
+                .collection("demands")
+                .add(demandDocument)
+                .addOnSuccessListener {
+                    continuation.resume(Unit)
+                }
+                .addOnFailureListener { error ->
+                    continuation.resume(null)
+                }
+        }
+    }
+
+    override suspend fun createNewVolunteersDemand(title: String, description: String): Unit? {
+        return suspendCoroutine { continuation ->
+            val demandDocument = hashMapOf(
+                "ownerId" to authHelper.user.id,
+                "type" to Demand.TYPE_VOLUNTEERS,
+                "title" to title,
+                "description" to description,
+                "createdAt" to System.currentTimeMillis(),
+                "updatedAt" to System.currentTimeMillis()
+            )
+            firestore
+                .collection("demands")
+                .add(demandDocument)
+                .addOnSuccessListener {
+                    continuation.resume(Unit)
+                }
+                .addOnFailureListener { error ->
+                    continuation.resume(null)
+                }
+        }
+    }
+
+    override suspend fun createNewMaterialDemand(title: String, description: String): Unit? {
+        return suspendCoroutine { continuation ->
+            val demandDocument = hashMapOf(
+                "ownerId" to authHelper.user.id,
+                "type" to Demand.TYPE_MATERIAL,
+                "title" to title,
+                "description" to description,
                 "createdAt" to System.currentTimeMillis(),
                 "updatedAt" to System.currentTimeMillis()
             )

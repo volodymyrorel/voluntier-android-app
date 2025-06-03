@@ -13,5 +13,5 @@ data class CreateNewAnswerStateUi(
     val updatedAt: String = "",
     val userAnswers: List<Answer> = emptyList(),
     val answerDescription: String = "",
-    val answerSum: String = "",
+    val answerSum: String = "0.0",
 )

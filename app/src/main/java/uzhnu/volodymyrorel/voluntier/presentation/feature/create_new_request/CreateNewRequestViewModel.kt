@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import uzhnu.volodymyrorel.voluntier.domain.answer.CreateFundAnswerUseCase
 import uzhnu.volodymyrorel.voluntier.domain.demand.DemandRepository
@@ -33,16 +34,53 @@ class CreateNewRequestViewModel @Inject constructor(
         viewModelScope.launch {
             // add when case for diff types
             val state = state.value
-//            val result = demandRepository.createNewDemand(
-//                type = Demand.TYPE_FUNDRAISING,
-//                title = "test fr",
-//                description = null,
-//                sum = "100.25".toDouble()
-//            )
+            var result: Unit? = null
+            when (state.type) {
+                Demand.TYPE_FUNDRAISING ->
+                    result = demandRepository.createNewFundraisingDemand(
+                        title = state.title,
+                        description = state.description.ifBlank { null },
+                        sum = state.sum.toDouble()
+                    )
+                Demand.TYPE_VOLUNTEERS ->
+                    result = demandRepository.createNewVolunteersDemand(
+                        title = state.title,
+                        description = state.description
+                    )
+                Demand.TYPE_MATERIAL ->
+                    result = demandRepository.createNewMaterialDemand(
+                        title = state.title,
+                        description = state.description
+                    )
+            }
 //            val result = createFundAnswerUseCase("mnClLuW8vO1V140wM4Ha", 100.0)
-//            if (result != null) {
-//                navigator.popBackStack()
-//            } else _event.emit(Event.ShowToast("Someth went wrong"))
+            if (result != null) {
+                navigator.popBackStack()
+            } else _event.emit(Event.ShowToast("Someth went wrong"))
         }
+    }
+
+    fun onFundraisingClicked() {
+        _state.update { it.copy(type = "fundraising") }
+    }
+
+    fun onVolunteersClicked() {
+        _state.update { it.copy(type = "volunteers") }
+    }
+
+    fun onMaterialClicked() {
+        _state.update { it.copy(type = "material") }
+    }
+
+    fun onTitleChanged(value: String) {
+        _state.update { it.copy(title = value) }
+    }
+
+    fun onDescriptionChanged(value: String) {
+        _state.update { it.copy(description = value) }
+    }
+
+    fun onSumChanged(value: String) {
+        _state.update { it.copy(sum = value) }
     }
 }
