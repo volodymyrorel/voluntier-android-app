@@ -5,8 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.HomeRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.homeRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org.HomeOrgRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org.homeOrgRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.HomeUserRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.homeUserRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.ProfileRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.OrganizationsRoute
@@ -15,16 +17,21 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.org
 @Composable
 fun MainNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier, //todo: change order
+    role: String
 ) {
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = homeRoute
+        startDestination = if (role == "user") homeUserRoute else homeOrgRoute
     ) {
 
-        composable(homeRoute) {
-            HomeRoute()
+        composable(homeUserRoute) {
+            HomeUserRoute()
+        }
+
+        composable(homeOrgRoute) {
+            HomeOrgRoute()
         }
 
         composable(organizationsRoute) {

@@ -104,8 +104,23 @@ class AnswerRepositoryImpl @Inject constructor(
         return suspendCoroutine { continuation ->
             firestore
                 .collection("answers")
-                .whereEqualTo("ownerId", authHelper.user.id)
-                .orderBy("updatedAt", Query.Direction.DESCENDING)
+                .whereEqualTo("userId", authHelper.user.id)
+                .get()
+                .addOnSuccessListener { response ->
+                    continuation.resume(answerMapper.mapToAnswer(response.documents))
+                }
+                .addOnFailureListener { e ->
+                    continuation.resume(emptyList())
+                }
+        }
+    }
+
+    override suspend fun getAnswersOnDemand(demandId: String): List<Answer> {
+        return suspendCoroutine { continuation ->
+            firestore
+                .collection("answers")
+                .whereEqualTo("demandId", demandId)
+//                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { response ->
                     continuation.resume(answerMapper.mapToAnswer(response.documents))

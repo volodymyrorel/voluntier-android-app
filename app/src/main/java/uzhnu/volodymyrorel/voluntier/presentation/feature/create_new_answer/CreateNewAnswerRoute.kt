@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -29,8 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.components.CreateNewAnswerScreenHeader
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun CreateNewAnswerRoute(
@@ -43,7 +47,8 @@ fun CreateNewAnswerRoute(
         state = state,
         onAnswerSumChanged = viewModel::onAnswerSumChanged,
         onAnswerDescriptionChanged = viewModel::onAnswerDescriptionChanged,
-        onSendClicked = viewModel::onSendClicked
+        onSendClicked = viewModel::onSendClicked,
+        isCurrentUserOwner = viewModel::isCurrentUserOwner
     )
 }
 
@@ -52,8 +57,10 @@ fun CreateNewAnswerScreen(
     state: CreateNewAnswerStateUi,
     onAnswerSumChanged: (String) -> Unit,
     onAnswerDescriptionChanged: (String) -> Unit,
-    onSendClicked: () -> Unit
+    onSendClicked: () -> Unit,
+    isCurrentUserOwner: () -> Boolean
 ) {
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -62,62 +69,125 @@ fun CreateNewAnswerScreen(
             }
         ) }
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
         ) {
-            CreateNewAnswerScreenHeader(state = state)
-            HorizontalDivider()
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                if (state.type == "fundraising") {
-                    OutlinedTextField(
+            item {
+                CreateNewAnswerScreenHeader(state = state)
+                HorizontalDivider()
+            }
+            if (isCurrentUserOwner()) {
+                items(state.demandAnswers) { answer ->
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        label = {
-                            Text("Your Sum")
-                        },
-                        value = state.answerSum,
-                        onValueChange = { onAnswerSumChanged(it) },
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Decimal
-                        ),
-                        singleLine = true
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
-                }
-                if (state.type == "volunteers" && state.userAnswers.isNotEmpty()) {
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "You have already answered that volunteers demand.",
-                        style = MaterialTheme.typography.titleMedium.copy(color = Color.Red)
-                    )
-                } else {
-                    OutlinedTextField(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        label = {
-                            Text("Description")
-                        },
-                        value = state.answerDescription,
-                        onValueChange = { onAnswerDescriptionChanged(it) }
-                    )
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Button(
-                        modifier = Modifier.fillMaxWidth(),
-                        enabled = !(state.type == "volunteers" && state.userAnswers.isNotEmpty()),
-                        onClick = onSendClicked
+                            .fillMaxWidth()
+                            .padding(
+                                horizontal = 16.dp,
+                                vertical = 8.dp
+                            )
                     ) {
-                        Text(text = "Send Answer", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "${answer.userSurname} ${answer.userName} ${answer.userFatherName}",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = answer.userEmail,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        if (answer.answer.description != null) {
+                            Text(
+                                text = "Description",
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = answer.answer.description,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                        if (state.type == Demand.TYPE_FUNDRAISING) {
+                            Text(
+                                text = "Sum",
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = answer.answer.sum.toString(),
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                        Text(
+                            text = "Answered at",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = answer.answer.createdAt.format(formatter),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        HorizontalDivider()
+                    }
+
+                }
+            } else if (!state.isOrg) {
+                item {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        if (state.type == "fundraising") {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                label = {
+                                    Text("Your Sum")
+                                },
+                                value = state.answerSum,
+                                onValueChange = { onAnswerSumChanged(it) },
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Decimal
+                                ),
+                                singleLine = true
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                        }
+                        if (state.type == "volunteers" && state.userAnswers.isNotEmpty()) {
+                            Text(
+                                modifier = Modifier.align(Alignment.CenterHorizontally),
+                                text = "You have already answered that volunteers demand.",
+                                style = MaterialTheme.typography.titleMedium.copy(color = Color.Red)
+                            )
+                        } else {
+                            OutlinedTextField(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                label = {
+                                    Text("Description")
+                                },
+                                value = state.answerDescription,
+                                onValueChange = { onAnswerDescriptionChanged(it) }
+                            )
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Button(
+                                modifier = Modifier.fillMaxWidth(),
+                                enabled = !(state.type == "volunteers" && state.userAnswers.isNotEmpty()),
+                                onClick = onSendClicked
+                            ) {
+                                Text(text = "Send Answer", style = MaterialTheme.typography.titleMedium)
+                            }
+                        }
                     }
                 }
             }
+
         }
     }
 }
@@ -140,7 +210,8 @@ fun CreateNewAnswerScreenPreview() {
             ),
             onAnswerSumChanged = {},
             onAnswerDescriptionChanged = {},
-            onSendClicked = {}
+            onSendClicked = {},
+            isCurrentUserOwner = { false }
         )
     }
 }

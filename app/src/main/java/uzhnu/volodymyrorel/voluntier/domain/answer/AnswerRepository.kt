@@ -13,4 +13,6 @@ interface AnswerRepository {
     suspend fun createMaterialAnswer(demandId: String, description: String?): Unit?
 
     suspend fun getAnswersFromCurrentUser(): List<Answer>
+
+    suspend fun getAnswersOnDemand(demandId: String): List<Answer>
 }

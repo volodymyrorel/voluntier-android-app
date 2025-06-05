@@ -12,17 +12,21 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home.homeRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org.homeOrgRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.homeUserRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.organizationsRoute
 
 @Composable
-fun MainBottomBar(navHostController: NavHostController) {
+fun MainBottomBar(
+    navHostController: NavHostController,
+    role: String
+) {
 
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    val isHomeSelected = currentDestination?.hierarchy?.any { it.route == homeRoute } == true
+    val isHomeSelected = currentDestination?.hierarchy?.any { it.route == homeUserRoute || it.route == homeOrgRoute} == true
     val iSearchSelected = currentDestination?.hierarchy?.any { it.route == organizationsRoute } == true
     val isUserPageSelected = currentDestination?.hierarchy?.any { it.route == profileRoute } == true
 
@@ -37,7 +41,7 @@ fun MainBottomBar(navHostController: NavHostController) {
         NavigationBarItem(
             selected = isHomeSelected,
             icon = { Icon(imageVector = Icons.Default.Home, contentDescription = null) },
-            onClick = { navHostController.navigate(homeRoute) }
+            onClick = { navHostController.navigate(if (role == "user") homeUserRoute else homeOrgRoute) }
         )
 
         NavigationBarItem(

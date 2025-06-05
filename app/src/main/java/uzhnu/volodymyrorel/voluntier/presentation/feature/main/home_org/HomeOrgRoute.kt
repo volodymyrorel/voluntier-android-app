@@ -1,15 +1,16 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package uzhnu.volodymyrorel.voluntier.presentation.feature.main.home
+package uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -17,55 +18,47 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org.components.DemandItem
 
-const val homeRoute = "homeRoute"
+const val homeOrgRoute = "homeOrgRoute"
 
 @Composable
-fun HomeRoute(
-    viewModel: HomeScreenViewModel = hiltViewModel()
+fun HomeOrgRoute(
+    viewModel: HomeOrgViewModel = hiltViewModel()
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    HomeScreen(
+    HomeOrgScreen(
         state = state,
-        onCreateRequestClicked = viewModel::onCreateNewRequestClicked
+        onCreateNewDemandClicked = viewModel::onCreateNewDemandClicked,
+        onDemandClicked = viewModel::onDemandClicked
     )
 }
 
 @Composable
-fun HomeScreen(
-    state: HomeStateUi,
-    onCreateRequestClicked: () -> Unit
+fun HomeOrgScreen(
+    state: HomeOrgStateUi,
+    onCreateNewDemandClicked: () -> Unit,
+    onDemandClicked: (String) -> Unit
 ) {
-//    Column (
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        Text("HomeScreen")
-//        Button(
-//            onClick = onCreateRequestClicked
-//        ) {
-//            Text(text = "Create request")
-//        }
-//    }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text("Home")
+                    Text("HomeOrg")
                 },
                 actions = {
                     IconButton(
-                        onClick = onCreateRequestClicked,
-                        enabled = state.userRole == "organization"
+                        onClick = onCreateNewDemandClicked
                     ) {
                         Icon(
                             imageVector = Icons.Default.Add,
@@ -79,9 +72,18 @@ fun HomeScreen(
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
-                .padding(innerPadding)
-                .background(color = Color.LightGray)
                 .fillMaxSize()
-        ) {  }
+                .padding(top = innerPadding.calculateTopPadding())
+                .background(color = Color.LightGray),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(state.demands) { demand ->
+                DemandItem(
+                    demand = demand,
+                    onClick = onDemandClicked
+                )
+            }
+        }
     }
 }
