@@ -9,7 +9,8 @@ data class ProfileStateUi(
     val publicName: String,
     val govName: String,
     val type: String,
-    val code: String
+    val code: String,
+    val createdAt: String
 ) {
     companion object {
         val DEFAULT = ProfileStateUi(
@@ -21,7 +22,8 @@ data class ProfileStateUi(
             publicName = "",
             govName = "",
             type = "",
-            code = ""
+            code = "",
+            createdAt = ""
         )
     }
 }

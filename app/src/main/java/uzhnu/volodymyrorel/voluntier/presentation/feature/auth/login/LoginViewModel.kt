@@ -1,5 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,6 +27,7 @@ class LoginViewModel @Inject constructor(
 
     fun onLoginClicked() {
         val state = state.value
+        if (!areFieldsValid(state.email, state.password)) return
         viewModelScope.launch {
             val login = loginUseCase(state.email, state.password)
             if (login != null) navigator.navigateToMainScreen()
@@ -42,5 +44,9 @@ class LoginViewModel @Inject constructor(
 
     fun onPasswordChanged(password: String) {
         _state.update { it.copy(password = password) }
+    }
+
+    private fun areFieldsValid(email: String, password: String): Boolean {
+        return !(!Patterns.EMAIL_ADDRESS.matcher(email).matches() || password.length < 6)
     }
 }

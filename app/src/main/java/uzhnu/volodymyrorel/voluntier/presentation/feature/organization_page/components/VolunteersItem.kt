@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,10 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uzhnu.volodymyrorel.voluntier.R
-import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageStateUi
 
 @Composable
@@ -49,7 +45,7 @@ fun VolunteersItem(
             Icon(
                 modifier = Modifier
                     .height(60.dp),
-                imageVector = Icons.Default.Person,
+                painter = painterResource(R.drawable.ic_person_60),
                 contentDescription = null
             )
             Spacer(modifier = Modifier.width(16.dp))

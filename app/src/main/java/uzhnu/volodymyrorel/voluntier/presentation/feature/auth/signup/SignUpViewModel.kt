@@ -1,5 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +23,7 @@ class SignUpViewModel @Inject constructor(
 
     fun onSignUpClicked() {
         val state = state.value
+        if (!areFieldsValid()) return
         viewModelScope.launch {
             val signUp = signUpUseCase(
                 email = state.email,
@@ -89,5 +91,19 @@ class SignUpViewModel @Inject constructor(
 
     fun onOrgCodeChanged(orgCode: String) {
         _state.update { it.copy(orgCode = orgCode) }
+    }
+
+    private fun areFieldsValid(): Boolean {
+        val state = state.value
+        return !(!Patterns.EMAIL_ADDRESS.matcher(state.email).matches() ||
+                state.password.length < 6 ||
+                state.password != state.repeatPassword || state.isOrganization && (state.orgPublicName.length < 3 ||
+                state.orgGovName.length < 5 ||
+                state.orgType.length < 2 ||
+                state.orgCode.length != 8 ||
+                !state.orgCode.matches(Regex("^\\d+$"))) || !state.isOrganization && (state.userSurname.length < 3 ||
+                state.userName.length < 3 ||
+                state.userFatherName.length < 3 ||
+                !state.userIsAdult))
     }
 }

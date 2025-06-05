@@ -14,20 +14,27 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import uzhnu.volodymyrorel.voluntier.R
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 
 @Composable
@@ -82,6 +89,10 @@ fun SignUpScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        var isPasswordVisible by remember { mutableStateOf(false) }
+        val icon =
+            if (isPasswordVisible) painterResource(R.drawable.ic_visibility_off_24)
+            else painterResource(R.drawable.ic_visibility_on_24)
         Text(
             text = "VolunTier"
         )
@@ -109,6 +120,16 @@ fun SignUpScreen(
             label = {
                 Text("Password")
             },
+            trailingIcon = {
+                IconButton(
+                    onClick = {isPasswordVisible = !isPasswordVisible}
+                ) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = null
+                    )
+                }
+            },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Next
@@ -121,6 +142,16 @@ fun SignUpScreen(
             onValueChange = { onRepeatPasswordChanged(it) },
             label = {
                 Text("Repeat password")
+            },
+            trailingIcon = {
+                IconButton(
+                    onClick = {isPasswordVisible = !isPasswordVisible}
+                ) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = null
+                    )
+                }
             },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,

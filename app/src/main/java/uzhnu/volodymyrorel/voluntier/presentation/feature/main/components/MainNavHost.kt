@@ -17,7 +17,7 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.org
 @Composable
 fun MainNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier, //todo: change order
+    modifier: Modifier = Modifier,
     role: String
 ) {
     NavHost(

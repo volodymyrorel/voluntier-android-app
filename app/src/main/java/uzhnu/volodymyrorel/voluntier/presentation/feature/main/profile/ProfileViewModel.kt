@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
 import uzhnu.volodymyrorel.voluntier.domain.auth.LogOutUseCase
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
+import uzhnu.volodymyrorel.voluntier.domain.utils.ktx.toLocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +26,7 @@ class ProfileViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             val result = authHelper.getCurrentUserData()
             _state.update { it.copy(
                 email = result?.data?.get("email") as String? ?: "",
@@ -34,7 +37,8 @@ class ProfileViewModel @Inject constructor(
                 publicName = result?.data?.get("orgPublicName") as String? ?: "",
                 govName = result?.data?.get("orgGovName") as String? ?: "",
                 type = result?.data?.get("orgType") as String? ?: "",
-                code = result?.data?.get("orgCode") as String? ?: ""
+                code = result?.data?.get("orgCode") as String? ?: "",
+                createdAt = ((result?.data?.get("createdAt") as Long?) ?: 0L).toLocalDateTime().format(formatter)
             ) }
         }
     }

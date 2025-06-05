@@ -37,23 +37,28 @@ class CreateNewRequestViewModel @Inject constructor(
             var result: Unit? = null
             when (state.type) {
                 Demand.TYPE_FUNDRAISING ->
-                    result = demandRepository.createNewFundraisingDemand(
-                        title = state.title,
-                        description = state.description.ifBlank { null },
-                        sum = state.sum.toDouble()
-                    )
+                    if (state.sum.toDouble() > 0 && state.description.length > 5 && state.title.length > 5) {
+                        result = demandRepository.createNewFundraisingDemand(
+                            title = state.title,
+                            description = state.description.ifBlank { null },
+                            sum = state.sum.toDouble()
+                        )
+                    }
                 Demand.TYPE_VOLUNTEERS ->
-                    result = demandRepository.createNewVolunteersDemand(
-                        title = state.title,
-                        description = state.description
-                    )
+                    if (state.description.length > 5 && state.title.length > 5) {
+                        result = demandRepository.createNewVolunteersDemand(
+                            title = state.title,
+                            description = state.description
+                        )
+                    }
                 Demand.TYPE_MATERIAL ->
-                    result = demandRepository.createNewMaterialDemand(
-                        title = state.title,
-                        description = state.description
-                    )
+                    if (state.description.length > 5 && state.title.length > 5) {
+                        result = demandRepository.createNewMaterialDemand(
+                            title = state.title,
+                            description = state.description
+                        )
+                    }
             }
-//            val result = createFundAnswerUseCase("mnClLuW8vO1V140wM4Ha", 100.0)
             if (result != null) {
                 navigator.popBackStack()
             } else _event.emit(Event.ShowToast("Someth went wrong"))

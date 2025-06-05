@@ -72,21 +72,25 @@ class CreateNewAnswerViewModel @Inject constructor(
         viewModelScope.launch {
             when (state.value.type) {
                 Demand.TYPE_FUNDRAISING ->
-                    result = createFundAnswerUseCase(
-                        demandId = state.value.demandId,
-                        sum = state.value.answerSum.toDouble(),
-                        description = state.value.answerDescription.ifBlank { null }
-                    )
+                    if (state.value.answerSum.toDouble() > 0) {
+                        result = createFundAnswerUseCase(
+                            demandId = state.value.demandId,
+                            sum = state.value.answerSum.toDouble(),
+                            description = state.value.answerDescription.ifBlank { null }
+                        )
+                    }
                 Demand.TYPE_VOLUNTEERS ->
                     result = answerRepository.createVolunteersAnswer(
                         demandId = state.value.demandId,
-                        description = state.value.answerDescription
+                        description = state.value.answerDescription.ifBlank { null }
                     )
                 Demand.TYPE_MATERIAL ->
-                    result = answerRepository.createMaterialAnswer(
-                        demandId = state.value.demandId,
-                        description = state.value.answerDescription
-                    )
+                    if (!state.value.demandDescription.isNullOrBlank()) {
+                        result = answerRepository.createMaterialAnswer(
+                            demandId = state.value.demandId,
+                            description = state.value.answerDescription
+                        )
+                    }
             }
             navigator.popBackStack()
             navigator.popBackStack()

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -69,97 +70,108 @@ fun ProfileScreen(
             )
         }
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.padding(innerPadding).background(color = Color.LightGray)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = innerPadding.calculateTopPadding())
+                .background(color = Color.LightGray)
         ) {
-            item {
-                if (state.role == "user") {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(72.dp)
-                                        .border(
-                                            width = 2.dp,
-                                            color = MaterialTheme.colorScheme.secondaryContainer,
-                                            shape = CircleShape
-                                        )
-                                )
-                                Icon(
-                                    modifier = Modifier.size(48.dp),
-                                    imageVector = Icons.Default.Person,
-                                    tint = MaterialTheme.colorScheme.secondary,
-                                    contentDescription = null
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Column(
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Text(text = "${state.surname} ${state.name} ${state.fatherName}", style = MaterialTheme.typography.titleLarge)
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(text = state.email, style = MaterialTheme.typography.labelMedium)
-                            }
-                        }
-
-                    }
-                } else {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(72.dp)
-                                        .border(
-                                            width = 2.dp,
-                                            color = MaterialTheme.colorScheme.secondaryContainer
-                                        )
-                                )
-                                Icon(
-                                    modifier = Modifier.size(48.dp),
-                                    painter = painterResource(R.drawable.ic_group_60),
-                                    tint = MaterialTheme.colorScheme.secondary,
-                                    contentDescription = null
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Column(
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Text(text = state.publicName!!, style = MaterialTheme.typography.titleLarge)
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(text = state.email, style = MaterialTheme.typography.labelMedium)
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = state.type!!, style = MaterialTheme.typography.bodyMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = state.govName!!, style = MaterialTheme.typography.bodyMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Code: ${state.code!!}", style = MaterialTheme.typography.bodyMedium)
-                    }
-
-                }
-                Spacer(modifier = Modifier.height(400.dp))
-                Button(
-                    modifier = Modifier.padding(16.dp),
-                    onClick = onLogOutClicked
+            if (state.role == "user") {
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
-                    Text("LogOut")
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Box(
+                                modifier = Modifier
+                                    .size(72.dp)
+                                    .border(
+                                        width = 2.dp,
+                                        color = MaterialTheme.colorScheme.secondaryContainer,
+                                        shape = CircleShape
+                                    )
+                            )
+                            Icon(
+                                modifier = Modifier.size(48.dp),
+                                imageVector = Icons.Default.Person,
+                                tint = MaterialTheme.colorScheme.secondary,
+                                contentDescription = null
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = "${state.surname} ${state.name} ${state.fatherName}", style = MaterialTheme.typography.titleLarge)
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = state.email, style = MaterialTheme.typography.labelMedium)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Joined on", style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = state.createdAt, style = MaterialTheme.typography.bodyMedium)
                 }
+            } else {
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Box(
+                                modifier = Modifier
+                                    .size(72.dp)
+                                    .border(
+                                        width = 2.dp,
+                                        color = MaterialTheme.colorScheme.secondaryContainer
+                                    )
+                            )
+                            Icon(
+                                modifier = Modifier.size(48.dp),
+                                painter = painterResource(R.drawable.ic_group_60),
+                                tint = MaterialTheme.colorScheme.secondary,
+                                contentDescription = null
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = state.publicName!!, style = MaterialTheme.typography.titleLarge)
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = state.email, style = MaterialTheme.typography.labelMedium)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Type", style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = state.type!!, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Government Name", style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = state.govName!!, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Government Code", style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = state.code!!, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = "Joined on", style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(text = state.createdAt, style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+            Spacer(modifier = Modifier.weight(1F))
+            Button(
+                modifier = Modifier.padding(16.dp),
+                onClick = onLogOutClicked
+            ) {
+                Text("LogOut")
             }
         }
     }

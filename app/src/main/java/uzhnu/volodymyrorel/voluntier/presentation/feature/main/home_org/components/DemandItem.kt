@@ -58,7 +58,7 @@ fun DemandItem(
                         if (demand.type == Demand.TYPE_FUNDRAISING)
                             painterResource(R.drawable.ic_card_60)
                         else if (demand.type == Demand.TYPE_VOLUNTEERS)
-                            painterResource(R.drawable.ic_group_60)
+                            painterResource(R.drawable.ic_person_60)
                         else painterResource(R.drawable.ic_healing_60),
                     contentDescription = null
                 )

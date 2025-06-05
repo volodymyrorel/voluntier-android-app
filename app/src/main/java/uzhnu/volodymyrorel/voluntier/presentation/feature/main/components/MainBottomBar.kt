@@ -2,6 +2,7 @@ package uzhnu.volodymyrorel.voluntier.presentation.feature.main.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -31,19 +32,16 @@ fun MainBottomBar(
     val isUserPageSelected = currentDestination?.hierarchy?.any { it.route == profileRoute } == true
 
     NavigationBar {
-
-        NavigationBarItem(
-            selected = iSearchSelected,
-            icon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
-            onClick = { navHostController.navigate(organizationsRoute) }
-        )
-
         NavigationBarItem(
             selected = isHomeSelected,
             icon = { Icon(imageVector = Icons.Default.Home, contentDescription = null) },
             onClick = { navHostController.navigate(if (role == "user") homeUserRoute else homeOrgRoute) }
         )
-
+        NavigationBarItem(
+            selected = iSearchSelected,
+            icon = { Icon(imageVector = Icons.Default.Menu, contentDescription = null) },
+            onClick = { navHostController.navigate(organizationsRoute) }
+        )
         NavigationBarItem(
             selected = isUserPageSelected,
             icon = { Icon(imageVector = Icons.Default.Person, contentDescription = null) },

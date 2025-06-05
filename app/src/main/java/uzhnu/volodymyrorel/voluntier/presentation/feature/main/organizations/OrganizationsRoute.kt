@@ -60,8 +60,8 @@ fun OrganizationsScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.LightGray)
-                .padding(innerPadding),
+                .padding(top = innerPadding.calculateTopPadding())
+                .background(color = Color.LightGray),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {

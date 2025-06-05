@@ -1,6 +1,5 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +26,6 @@ import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.HomeUserStateUi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.String
 
 @Composable
 fun AnswerItem(
@@ -56,7 +54,7 @@ fun AnswerItem(
                         if (state.demandType == Demand.TYPE_FUNDRAISING)
                             painterResource(R.drawable.ic_card_60)
                         else if (state.demandType == Demand.TYPE_VOLUNTEERS)
-                            painterResource(R.drawable.ic_group_60)
+                            painterResource(R.drawable.ic_person_60)
                         else painterResource(R.drawable.ic_healing_60),
                     contentDescription = null
                 )
