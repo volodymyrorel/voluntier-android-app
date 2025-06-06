@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +36,7 @@ import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.components.CreateNewAnswerScreenHeader
 import java.time.format.DateTimeFormatter
+import uzhnu.volodymyrorel.voluntier.R
 
 @Composable
 fun CreateNewAnswerRoute(
@@ -65,7 +67,10 @@ fun CreateNewAnswerScreen(
         topBar = {
             CenterAlignedTopAppBar(
             title = {
-                Text("Demand")
+                Text(
+                    text = stringResource(R.string.request),
+                    style = MaterialTheme.typography.titleLarge
+                )
             }
         ) }
     ) { innerPadding ->
@@ -101,7 +106,7 @@ fun CreateNewAnswerScreen(
                         Spacer(modifier = Modifier.height(4.dp))
                         if (answer.answer.description != null) {
                             Text(
-                                text = "Description",
+                                text = stringResource(R.string.description),
                                 style = MaterialTheme.typography.titleMedium
                             )
                             Spacer(modifier = Modifier.height(2.dp))
@@ -112,7 +117,7 @@ fun CreateNewAnswerScreen(
                         }
                         if (state.type == Demand.TYPE_FUNDRAISING) {
                             Text(
-                                text = "Sum",
+                                text = stringResource(R.string.sum),
                                 style = MaterialTheme.typography.titleMedium
                             )
                             Spacer(modifier = Modifier.height(2.dp))
@@ -122,7 +127,7 @@ fun CreateNewAnswerScreen(
                             )
                         }
                         Text(
-                            text = "Answered at",
+                            text = stringResource(R.string.answered_at_column),
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(2.dp))
@@ -148,7 +153,7 @@ fun CreateNewAnswerScreen(
                                 modifier = Modifier
                                     .fillMaxWidth(),
                                 label = {
-                                    Text("Your Sum")
+                                    Text(text = stringResource(R.string.sum))
                                 },
                                 value = state.answerSum,
                                 onValueChange = { onAnswerSumChanged(it) },
@@ -162,7 +167,7 @@ fun CreateNewAnswerScreen(
                         if (state.type == "volunteers" && state.userAnswers.isNotEmpty()) {
                             Text(
                                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                                text = "You have already answered that volunteers demand.",
+                                text = stringResource(R.string.you_have_already_answered),
                                 style = MaterialTheme.typography.titleMedium.copy(color = Color.Red)
                             )
                         } else {
@@ -170,7 +175,7 @@ fun CreateNewAnswerScreen(
                                 modifier = Modifier
                                     .fillMaxWidth(),
                                 label = {
-                                    Text("Description")
+                                    Text(text = stringResource(R.string.description))
                                 },
                                 value = state.answerDescription,
                                 onValueChange = { onAnswerDescriptionChanged(it) }
@@ -181,7 +186,10 @@ fun CreateNewAnswerScreen(
                                 enabled = !(state.type == "volunteers" && state.userAnswers.isNotEmpty()),
                                 onClick = onSendClicked
                             ) {
-                                Text(text = "Send Answer", style = MaterialTheme.typography.titleMedium)
+                                Text(
+                                    text = stringResource(R.string.send_answer),
+                                    style = MaterialTheme.typography.titleMedium
+                                )
                             }
                         }
                     }

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,23 +92,22 @@ fun AnswerItem(
             Spacer(modifier = Modifier.height(4.dp))
             if (state.answerDescription != null) {
                 Text(
-                    text = "Replied: ${state.answerDescription}",
+                    text = "${stringResource(R.string.replied)} ${state.answerDescription}",
                     style = MaterialTheme.typography.labelLarge,
                     maxLines = 5,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
             }
-            Spacer(modifier = Modifier.height(4.dp))
             if (state.demandType == Demand.TYPE_FUNDRAISING) {
                 Text(
-                    text = "Donated: ${state.answerSum}",
+                    text = "${stringResource(R.string.donated)} ${state.answerSum}",
                     style = MaterialTheme.typography.labelLarge
                 )
                 Spacer(modifier = Modifier.height(4.dp))
             }
             Text(
-                text = "Answered at: ${state.answerCreatedAt.format(formatter)}",
+                text = "${stringResource(R.string.answered_at_row)} ${state.answerCreatedAt.format(formatter)}",
                 style = MaterialTheme.typography.labelLarge
             )
         }

@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import uzhnu.volodymyrorel.voluntier.R
@@ -71,7 +72,7 @@ fun FundraisingItem(
                     Spacer(modifier = Modifier.height(4.dp))
                 }
                 Text(
-                    text = "${state.currentSum} out of ${state.targetSum}",
+                    text = "${state.currentSum} ${stringResource(R.string.out_of)} ${state.targetSum}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }

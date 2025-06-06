@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -86,28 +87,40 @@ fun DemandItem(
                 Spacer(modifier = Modifier.height(4.dp))
             }
             if (demand.type == Demand.TYPE_FUNDRAISING) {
-                Text(text = "Raised", style = MaterialTheme.typography.titleMedium)
+                Text(
+                    text = stringResource(R.string.raised),
+                    style = MaterialTheme.typography.titleMedium
+                )
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
                     verticalAlignment = Alignment.Bottom
                 ) {
-                    Text(text = demand.currentSum.toString(), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = demand.currentSum.toString(),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "out of", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = stringResource(R.string.out_of),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = demand.targetSum.toString(), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = demand.targetSum.toString(),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                 }
                 Spacer(modifier = Modifier.height(4.dp))
             }
             Text(
-                text = "Created at: ${demand.createdAt.format(formatter)}",
+                text = "${stringResource(R.string.created_at_row)} ${demand.createdAt.format(formatter)}",
                 style = MaterialTheme.typography.labelLarge
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Updated at: ${demand.updatedAt.format(formatter)}",
+                text = "${stringResource(R.string.updated_at_row)} ${demand.updatedAt.format(formatter)}",
                 style = MaterialTheme.typography.labelLarge
             )
         }
@@ -123,7 +136,7 @@ fun DemandItemPreview() {
                 uid = "",
                 ownerId = "",
                 type = Demand.TYPE_FUNDRAISING,
-                title = "Збір коштів",
+                title = "Fundraising",
                 description = "Description",
                 targetSum = 250000.0,
                 currentSum = 50000.0,

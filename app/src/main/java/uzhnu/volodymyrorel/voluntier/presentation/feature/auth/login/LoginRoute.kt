@@ -27,12 +27,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
@@ -75,18 +77,22 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "VolunTier"
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.titleLarge.copy(fontSize = 30.sp)
         )
+        Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Log in"
+            text = stringResource(R.string.log_in),
+            style = MaterialTheme.typography.titleLarge
         )
+        Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
             value = stateUi.email,
             onValueChange = { onEmailChanged(it) },
             label = {
-                Text("Email")
+                Text(text = stringResource(R.string.email))
             },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -99,7 +105,7 @@ fun LoginScreen(
             value = stateUi.password,
             onValueChange = { onPasswordChanged(it) },
             label = {
-                Text("Password")
+                Text(text = stringResource(R.string.password))
             },
             trailingIcon = {
                 IconButton(
@@ -130,19 +136,20 @@ fun LoginScreen(
                 modifier = Modifier.weight(2.5F),
                 onClick = onLoginClicked
             ) {
-                Text("Log In")
+                Text(text = stringResource(R.string.log_in))
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp)
-                    .weight(3.5F)
+                    .weight(4F)
             ) {
                 Text(
-                    text = "Don't have an account?",
+                    text = stringResource(R.string.do_not_have_an_account),
                     style = MaterialTheme.typography.labelSmall
                 )
+                Spacer(modifier = Modifier.height(4.dp))
 //                Button(
 //                    onClick = onSignUpClicked,
 //                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
@@ -156,7 +163,8 @@ fun LoginScreen(
                             enabled = true,
                             onClick = onSignUpClicked
                         ),
-                    text = "Sign Up"
+                    text = stringResource(R.string.sign_up),
+                    style = MaterialTheme.typography.bodyLarge
                 )
             }
         }

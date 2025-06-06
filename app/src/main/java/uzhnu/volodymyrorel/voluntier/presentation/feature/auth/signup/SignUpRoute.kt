@@ -28,10 +28,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uzhnu.volodymyrorel.voluntier.R
@@ -94,18 +98,22 @@ fun SignUpScreen(
             if (isPasswordVisible) painterResource(R.drawable.ic_visibility_off_24)
             else painterResource(R.drawable.ic_visibility_on_24)
         Text(
-            text = "VolunTier"
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.titleLarge.copy(fontSize = 30.sp)
         )
+        Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Sign Up"
+            text = stringResource(R.string.sign_up),
+            style = MaterialTheme.typography.titleLarge
         )
+        Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
             value = stateUi.email,
             onValueChange = { onEmailChanged(it) },
             label = {
-                Text("Email")
+                Text(text = stringResource(R.string.email))
             },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -118,7 +126,7 @@ fun SignUpScreen(
             value = stateUi.password,
             onValueChange = { onPasswordChanged(it) },
             label = {
-                Text("Password")
+                Text(text = stringResource(R.string.password))
             },
             trailingIcon = {
                 IconButton(
@@ -133,7 +141,10 @@ fun SignUpScreen(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Next
-            )
+            ),
+            visualTransformation =
+                if (isPasswordVisible) VisualTransformation.None
+                else PasswordVisualTransformation()
         )
         OutlinedTextField(
             modifier = Modifier
@@ -141,22 +152,13 @@ fun SignUpScreen(
             value = stateUi.repeatPassword,
             onValueChange = { onRepeatPasswordChanged(it) },
             label = {
-                Text("Repeat password")
-            },
-            trailingIcon = {
-                IconButton(
-                    onClick = {isPasswordVisible = !isPasswordVisible}
-                ) {
-                    Icon(
-                        painter = icon,
-                        contentDescription = null
-                    )
-                }
+                Text(text = stringResource(R.string.repeat_password))
             },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done
-            )
+            ),
+            visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
@@ -170,11 +172,10 @@ fun SignUpScreen(
                     containerColor =
                         if (stateUi.isOrganization) Color.Transparent
                         else MaterialTheme.colorScheme.primary
-
                 )
             ) {
                 Text(
-                    text = "Volunteer",
+                    text = stringResource(R.string.volunteer),
                     color =
                         if (stateUi.isOrganization) Color.Black
                         else Color.Unspecified
@@ -188,10 +189,9 @@ fun SignUpScreen(
                     if (stateUi.isOrganization) MaterialTheme.colorScheme.primary
                     else Color.Transparent
                 )
-
-                ) {
+            ) {
                 Text(
-                    text = "Organization",
+                    text = stringResource(R.string.organization),
                     color =
                         if (stateUi.isOrganization) Color.Unspecified
                         else Color.Black
@@ -206,7 +206,7 @@ fun SignUpScreen(
                 value = stateUi.userSurname,
                 onValueChange = { onUserSurnameChanged(it) },
                 label = {
-                    Text("Your Surname")
+                    Text(text = stringResource(R.string.your_surname))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -219,7 +219,7 @@ fun SignUpScreen(
                 value = stateUi.userName,
                 onValueChange = { onUserNameChanged(it) },
                 label = {
-                    Text("Your Name")
+                    Text(text = stringResource(R.string.your_name))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -232,7 +232,7 @@ fun SignUpScreen(
                 value = stateUi.userFatherName,
                 onValueChange = { onUserFatherNameChanged(it) },
                 label = {
-                    Text("Your Middle Name")
+                    Text(text = stringResource(R.string.your_middle_name))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -250,7 +250,8 @@ fun SignUpScreen(
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = "I am above 18 years old"
+                    text = stringResource(R.string.i_am_above_18_years_old),
+                    style = MaterialTheme.typography.bodyLarge
                 )
             }
         } else {
@@ -260,7 +261,7 @@ fun SignUpScreen(
                 value = stateUi.orgPublicName,
                 onValueChange = { onOrgPublicNameChanged(it) },
                 label = {
-                    Text("Org. public name")
+                    Text(text = stringResource(R.string.org_public_name))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -273,7 +274,7 @@ fun SignUpScreen(
                 value = stateUi.orgGovName,
                 onValueChange = { onOrgGovNameChanged(it) },
                 label = {
-                    Text("Org. government name")
+                    Text(text = stringResource(R.string.org_government_name))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -286,7 +287,7 @@ fun SignUpScreen(
                 value = stateUi.orgType,
                 onValueChange = { onOrgTypeChanged(it) },
                 label = {
-                    Text("Org. type")
+                    Text(text = stringResource(R.string.org_type))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -299,7 +300,7 @@ fun SignUpScreen(
                 value = stateUi.orgCode,
                 onValueChange = { onOrgCodeChanged(it) },
                 label = {
-                    Text("Org. code (8 digits)")
+                    Text(text = stringResource(R.string.org_code_8_digits))
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Unspecified,
@@ -311,9 +312,7 @@ fun SignUpScreen(
         Button(
             onClick = onSignUpClicked
         ) {
-            Text(
-                text = "Sign Up"
-            )
+            Text(text = stringResource(R.string.sign_up))
         }
     }
 }

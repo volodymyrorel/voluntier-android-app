@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -75,7 +76,7 @@ fun OrganizationItem(
                     Spacer(modifier = Modifier.height(4.dp))
                 }
                 Text(
-                    text = "Joined on: " + formatter.format(organization.createdAt),
+                    text = "${stringResource(R.string.joined_on_row)} ${formatter.format(organization.createdAt)}",
                     style = MaterialTheme.typography.labelMedium
                 )
             }
@@ -91,8 +92,8 @@ private fun OrganizationItemPreview() {
             OrganizationsStateUi.OrgStateUi(
                 uid = "",
                 name = "SOM Zakarpattia",
-                description = "Zakarpattia youth organization. Ти - це рушійна сила, бо все починається з тебе і твоєї ідеї."
-                        + "Навколо себе можливо зібрати багато прикольних людей, які підтримають тебе і тоді ви разом зможете створювати круті речі",
+                description = "Zakarpattia youth organization. You are the driving force, because it all starts with you and your idea."
+                        + "You can gather as many people around you as possible who will support you and then together you can create cool things",
                 createdAt = LocalDateTime.of(
                     2024,
                     Month.APRIL,

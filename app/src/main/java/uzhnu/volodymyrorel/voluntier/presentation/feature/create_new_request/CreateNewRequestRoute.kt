@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
 import uzhnu.volodymyrorel.voluntier.presentation.core.components.ObserveSingleEvent
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
+import uzhnu.volodymyrorel.voluntier.R
 
 @Composable
 fun CreateNewRequestRoute(
@@ -82,7 +84,10 @@ fun CreateNewRequestScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text("Create New Request")
+                    Text(
+                        text = stringResource(R.string.create_new_request),
+                        style = MaterialTheme.typography.titleLarge
+                    )
                 }
             )
         }
@@ -102,7 +107,7 @@ fun CreateNewRequestScreen(
                 )
             ) {
                 Text(
-                    text = "Fundraising",
+                    text = stringResource(R.string.fundraising),
                     color =
                         if (state.type == "fundraising") Color.Unspecified
                         else Color.Black
@@ -117,7 +122,7 @@ fun CreateNewRequestScreen(
                 )
             ) {
                 Text(
-                    text = "Volunteers",
+                    text = stringResource(R.string.volunteers),
                     color =
                         if (state.type == "volunteers") Color.Unspecified
                         else Color.Black
@@ -132,7 +137,7 @@ fun CreateNewRequestScreen(
                 )
             ) {
                 Text(
-                    text = "Material",
+                    text = stringResource(R.string.material),
                     color =
                         if (state.type == "material") Color.Unspecified
                         else Color.Black
@@ -147,7 +152,7 @@ fun CreateNewRequestScreen(
                         .padding(horizontal = 16.dp)
                     ,
                     label = {
-                        Text("Title")
+                        Text(text = stringResource(R.string.title))
                     },
                     value = state.title,
                     onValueChange = { onTitleChanged(it) }
@@ -157,7 +162,7 @@ fun CreateNewRequestScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     label = {
-                        Text("Description")
+                        Text(text = stringResource(R.string.description))
                     },
                     value = state.description,
                     onValueChange = { onDescriptionChanged(it) }
@@ -168,7 +173,7 @@ fun CreateNewRequestScreen(
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),
                         label = {
-                            Text("Your Sum")
+                            Text(text = stringResource(R.string.target_sum))
                         },
                         value = state.sum,
                         onValueChange = { onSumChanged(it) },
@@ -182,7 +187,7 @@ fun CreateNewRequestScreen(
                 Button(
                     onClick = onCreateClicked
                 ) {
-                    Text("Create Request")
+                    Text(text = stringResource(R.string.create_request))
                 }
             }
         }

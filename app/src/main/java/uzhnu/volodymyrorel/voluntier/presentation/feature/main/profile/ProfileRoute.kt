@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -64,7 +65,10 @@ fun ProfileScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text("Profile")
+                    Text(
+                        text = stringResource(R.string.profile),
+                        style = MaterialTheme.typography.titleLarge
+                    )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             )
@@ -105,15 +109,27 @@ fun ProfileScreen(
                         Column(
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text(text = "${state.surname} ${state.name} ${state.fatherName}", style = MaterialTheme.typography.titleLarge)
+                            Text(
+                                text = "${state.surname} ${state.name} ${state.fatherName}",
+                                style = MaterialTheme.typography.titleLarge
+                            )
                             Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = state.email, style = MaterialTheme.typography.labelMedium)
+                            Text(
+                                text = state.email,
+                                style = MaterialTheme.typography.labelMedium
+                            )
                         }
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Joined on", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R.string.joined_on_column),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = state.createdAt, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = state.createdAt,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             } else {
                 Column(
@@ -149,21 +165,45 @@ fun ProfileScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Type", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R.string.type),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = state.type!!, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = state.type!!,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Government Name", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R.string.government_name),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = state.govName!!, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = state.govName!!,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Government Code", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R.string.government_code),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = state.code!!, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = state.code!!,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Joined on", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R.string.joined_on_column),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = state.createdAt, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = state.createdAt,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
             Spacer(modifier = Modifier.weight(1F))
@@ -171,7 +211,7 @@ fun ProfileScreen(
                 modifier = Modifier.padding(16.dp),
                 onClick = onLogOutClicked
             ) {
-                Text("LogOut")
+                Text(text = stringResource(R.string.log_out))
             }
         }
     }
