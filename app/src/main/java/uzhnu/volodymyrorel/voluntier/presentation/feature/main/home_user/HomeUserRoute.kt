@@ -82,7 +82,7 @@ fun HomeUserScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.LightGray)
+                .background(MaterialTheme.colorScheme.background)
                 .padding(innerPadding),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)

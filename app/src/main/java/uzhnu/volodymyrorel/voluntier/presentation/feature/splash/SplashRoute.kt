@@ -1,5 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.splash
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +22,12 @@ fun SplashRoute(
 
 @Composable
 fun SplashScreen() {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.secondaryContainer),
+        contentAlignment = Alignment.Center
+    ) {
         Text(
             text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.titleLarge.copy(fontSize = 48.sp)

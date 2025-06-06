@@ -2,6 +2,7 @@
 
 package uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -66,18 +68,21 @@ fun CreateNewAnswerScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-            title = {
-                Text(
-                    text = stringResource(R.string.request),
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
-        ) }
+                title = {
+                    Text(
+                        text = stringResource(R.string.request),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            )
+        }
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .background(MaterialTheme.colorScheme.background)
         ) {
             item {
                 CreateNewAnswerScreenHeader(state = state)

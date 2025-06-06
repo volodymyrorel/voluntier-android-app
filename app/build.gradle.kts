@@ -43,6 +43,7 @@ android {
 dependencies {
     //Compose
     implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.uiGoogleFonts)
     implementation(Dependencies.Compose.uiTooling)
     implementation(Dependencies.Compose.toolingPreview)
     implementation(Dependencies.Compose.material3)

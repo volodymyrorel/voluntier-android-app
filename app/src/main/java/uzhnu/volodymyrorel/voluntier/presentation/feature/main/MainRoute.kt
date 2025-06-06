@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,7 +36,7 @@ fun MainScreen(
     val navController = rememberNavController()
 
     Scaffold(
-        modifier = Modifier.fillMaxSize().background(color = Color.LightGray),
+        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
         bottomBar = {
             MainBottomBar(navHostController = navController, role = state.role)
         }

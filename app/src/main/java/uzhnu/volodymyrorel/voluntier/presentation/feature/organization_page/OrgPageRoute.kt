@@ -79,7 +79,7 @@ fun OrgPageScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.LightGray)
+                .background(MaterialTheme.colorScheme.background)
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {

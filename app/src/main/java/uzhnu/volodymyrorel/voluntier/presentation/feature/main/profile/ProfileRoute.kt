@@ -78,7 +78,7 @@ fun ProfileScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = innerPadding.calculateTopPadding())
-                .background(color = Color.LightGray)
+                .background(MaterialTheme.colorScheme.background)
         ) {
             if (state.role == "user") {
                 Column(
