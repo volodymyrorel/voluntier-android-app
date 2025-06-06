@@ -25,7 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -37,8 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.R
+import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 
 @Composable
 fun LoginRoute(
@@ -150,13 +149,6 @@ fun LoginScreen(
                     style = MaterialTheme.typography.labelSmall
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-//                Button(
-//                    onClick = onSignUpClicked,
-//                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-//                    contentPadding = PaddingValues(0.dp)
-//                ) {
-//                    Text("Sign up")
-//                }
                 Text(
                     modifier = Modifier
                         .clickable(

@@ -6,11 +6,9 @@ import uzhnu.volodymyrorel.voluntier.domain.utils.ktx.toLocalDateTime
 import javax.inject.Inject
 
 class OrganizationMapper @Inject constructor() {
-
     fun mapToOrganization(documents: List<DocumentSnapshot>) : List<Organization> {
         return documents.map { mapToOrganization(it) }
     }
-
     fun mapToOrganization(document: DocumentSnapshot) : Organization {
         return Organization(
             uid = document.id,

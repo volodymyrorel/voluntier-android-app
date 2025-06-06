@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    val navigator: Navigator,
-    val signUpUseCase: SignUpUseCase
+    private val navigator: Navigator,
+    private val signUpUseCase: SignUpUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(SignUpStateUi.DEFAULT)

@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.rememberNavController
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.presentation.core.navigation.AppNavHost

@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import uzhnu.volodymyrorel.voluntier.domain.answer.CreateFundAnswerUseCase
 import uzhnu.volodymyrorel.voluntier.domain.demand.DemandRepository
 import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
@@ -19,8 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CreateNewRequestViewModel @Inject constructor(
     private val navigator: Navigator,
-    private val demandRepository: DemandRepository,
-    private val createFundAnswerUseCase: CreateFundAnswerUseCase
+    private val demandRepository: DemandRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CreateNewRequestStateUi.DEFAULT)
@@ -61,20 +59,20 @@ class CreateNewRequestViewModel @Inject constructor(
             }
             if (result != null) {
                 navigator.popBackStack()
-            } else _event.emit(Event.ShowToast("Someth went wrong"))
+            } else _event.emit(Event.ShowToast("Something went wrong"))
         }
     }
 
     fun onFundraisingClicked() {
-        _state.update { it.copy(type = "fundraising") }
+        _state.update { it.copy(type = Demand.TYPE_FUNDRAISING) }
     }
 
     fun onVolunteersClicked() {
-        _state.update { it.copy(type = "volunteers") }
+        _state.update { it.copy(type = Demand.TYPE_VOLUNTEERS) }
     }
 
     fun onMaterialClicked() {
-        _state.update { it.copy(type = "material") }
+        _state.update { it.copy(type = Demand.TYPE_MATERIAL) }
     }
 
     fun onTitleChanged(value: String) {

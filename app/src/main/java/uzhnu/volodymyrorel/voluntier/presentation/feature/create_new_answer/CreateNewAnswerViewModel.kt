@@ -68,25 +68,24 @@ class CreateNewAnswerViewModel @Inject constructor(
     }
 
     fun onSendClicked() {
-        var result: Unit? = null
         viewModelScope.launch {
             when (state.value.type) {
                 Demand.TYPE_FUNDRAISING ->
                     if (state.value.answerSum.toDouble() > 0) {
-                        result = createFundAnswerUseCase(
+                        createFundAnswerUseCase(
                             demandId = state.value.demandId,
                             sum = state.value.answerSum.toDouble(),
                             description = state.value.answerDescription.ifBlank { null }
                         )
                     }
                 Demand.TYPE_VOLUNTEERS ->
-                    result = answerRepository.createVolunteersAnswer(
+                    answerRepository.createVolunteersAnswer(
                         demandId = state.value.demandId,
                         description = state.value.answerDescription.ifBlank { null }
                     )
                 Demand.TYPE_MATERIAL ->
                     if (!state.value.demandDescription.isNullOrBlank()) {
-                        result = answerRepository.createMaterialAnswer(
+                        answerRepository.createMaterialAnswer(
                             demandId = state.value.demandId,
                             description = state.value.answerDescription
                         )

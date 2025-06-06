@@ -7,13 +7,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import uzhnu.volodymyrorel.voluntier.domain.auth.AuthHelper
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
-    private val authHelper: AuthHelper,
+class MainViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 

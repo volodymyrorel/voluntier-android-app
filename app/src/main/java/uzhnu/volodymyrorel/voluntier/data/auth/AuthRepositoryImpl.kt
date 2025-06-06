@@ -6,14 +6,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.auth.entity.User
-import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-
 class AuthRepositoryImpl @Inject constructor(
-    private val navigator: Navigator,
     val firestore: FirebaseFirestore
 ) : AuthRepository {
 

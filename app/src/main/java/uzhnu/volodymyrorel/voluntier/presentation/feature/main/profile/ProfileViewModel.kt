@@ -45,7 +45,6 @@ class ProfileViewModel @Inject constructor(
     fun onLogOutClicked() {
         viewModelScope.launch {
             logOutUseCase()
-//            navigator.popBackStack()
             navigator.navigateToLoginScreen()
         }
     }

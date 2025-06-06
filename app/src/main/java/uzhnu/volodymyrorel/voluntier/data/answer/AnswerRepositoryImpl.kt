@@ -1,7 +1,6 @@
 package uzhnu.volodymyrorel.voluntier.data.answer
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import uzhnu.volodymyrorel.voluntier.data.answer.mapper.AnswerMapper
 import uzhnu.volodymyrorel.voluntier.domain.answer.AnswerRepository
 import uzhnu.volodymyrorel.voluntier.domain.answer.entity.Answer
@@ -20,7 +19,6 @@ class AnswerRepositoryImpl @Inject constructor(
         userId: String,
         demandId: String
     ): List<Answer> {
-
         return suspendCoroutine { continuation ->
             firestore
                 .collection("answers")
@@ -120,7 +118,6 @@ class AnswerRepositoryImpl @Inject constructor(
             firestore
                 .collection("answers")
                 .whereEqualTo("demandId", demandId)
-//                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { response ->
                     continuation.resume(answerMapper.mapToAnswer(response.documents))

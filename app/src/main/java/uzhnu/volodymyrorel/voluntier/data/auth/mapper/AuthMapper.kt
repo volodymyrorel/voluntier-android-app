@@ -5,7 +5,6 @@ import uzhnu.volodymyrorel.voluntier.domain.auth.entity.UserData
 import javax.inject.Inject
 
 class AuthMapper @Inject constructor() {
-
     fun mapToUserData(document: DocumentSnapshot): UserData {
         return UserData(
             id = document.id,

@@ -1,15 +1,14 @@
 package uzhnu.volodymyrorel.voluntier.data.navigation
 
 import android.app.Activity
-import android.util.Log
 import androidx.navigation.NavHostController
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.login.LoginConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.auth.signup.SignUpConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.CreateNewAnswerConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageScreenConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.OrgPageConstants
 import javax.inject.Inject
 
 internal class NavigatorImpl @Inject constructor() : Navigator {
@@ -46,8 +45,7 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
     }
 
     override fun navigateToMainScreen() {
-        navHostController?.navigate(route = MainScreenConstants.Args)
-        Log.d("test", "user is navigated to HomeScreen")
+        navHostController?.navigate(route = MainConstants.Args)
     }
 
     override fun navigateToCreateNewRequestScreen() {
@@ -55,7 +53,7 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
     }
 
     override fun navigateToOrgPageScreen(uid: String) {
-        navHostController?.navigate(route = OrgPageScreenConstants.Args(uid))
+        navHostController?.navigate(route = OrgPageConstants.Args(uid))
     }
 
     override fun navigateToCreateNewAnswerScreen(demandId: String) {

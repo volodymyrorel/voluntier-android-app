@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ import uzhnu.volodymyrorel.voluntier.domain.auth.AuthRepository
 import uzhnu.volodymyrorel.voluntier.domain.demand.DemandRepository
 import uzhnu.volodymyrorel.voluntier.domain.navigation.Navigator
 import uzhnu.volodymyrorel.voluntier.domain.organization.OrganizationRepository
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.mapper.mapToUi
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.mapper.mapToUi
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
@@ -26,7 +26,7 @@ class OrgPageViewModel @Inject constructor(
     private val navigator: Navigator
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(OrgPageStateUi(uid = savedStateHandle.toRoute<OrgPageScreenConstants.Args>().uid))
+    private val _state = MutableStateFlow(OrgPageStateUi(uid = savedStateHandle.toRoute<OrgPageConstants.Args>().uid))
     val state: StateFlow<OrgPageStateUi>; get() = _state
 
     init {

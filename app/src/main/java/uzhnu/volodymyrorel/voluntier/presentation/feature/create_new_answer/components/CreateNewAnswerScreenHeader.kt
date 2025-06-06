@@ -30,7 +30,6 @@ fun CreateNewAnswerScreenHeader(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-
         Text(
             text =
                 when (state.type) {

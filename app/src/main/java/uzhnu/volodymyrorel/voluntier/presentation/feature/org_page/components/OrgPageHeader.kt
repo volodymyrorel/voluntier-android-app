@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageStateUi
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.OrgPageStateUi
 import uzhnu.volodymyrorel.voluntier.R
 
 @Composable

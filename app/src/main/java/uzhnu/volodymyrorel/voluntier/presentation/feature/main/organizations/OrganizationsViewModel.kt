@@ -13,7 +13,7 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.map
 import javax.inject.Inject
 
 @HiltViewModel
-class OrganizationsScreenViewModel @Inject constructor(
+class OrganizationsViewModel @Inject constructor(
     val navigator: Navigator,
     val organizationRepository: OrganizationRepository
 ) : ViewModel() {

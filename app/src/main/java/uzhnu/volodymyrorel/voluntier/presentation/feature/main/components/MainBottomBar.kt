@@ -4,7 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -15,8 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_org.homeOrgRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.homeUserRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.organizationsRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.profile.profileRoute
 
 @Composable
 fun MainBottomBar(

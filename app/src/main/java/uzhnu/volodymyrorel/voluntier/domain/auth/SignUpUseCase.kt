@@ -23,7 +23,6 @@ class SignUpUseCase @Inject constructor(
         authHelper.logOut()
         val response = authRepository.signUp(email = email, password = password)
         if (response == null) {
-//            authHelper.storeUser(response)
             return null
         }
         authHelper.storeUser(response)

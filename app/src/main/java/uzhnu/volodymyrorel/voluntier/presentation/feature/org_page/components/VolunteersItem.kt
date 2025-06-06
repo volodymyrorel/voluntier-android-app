@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import uzhnu.volodymyrorel.voluntier.R
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageStateUi
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.OrgPageStateUi
 
 @Composable
 fun VolunteersItem(

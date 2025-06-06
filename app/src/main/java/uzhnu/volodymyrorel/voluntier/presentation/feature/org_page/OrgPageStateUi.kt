@@ -1,4 +1,4 @@
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page
 
 data class OrgPageStateUi(
     val uid: String,

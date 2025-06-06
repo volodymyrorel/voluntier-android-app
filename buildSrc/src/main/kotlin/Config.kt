@@ -9,5 +9,4 @@ object Config {
     val javaVersion = JavaVersion.VERSION_17
     const val jvmTarget = "17"
     const val minifyEnabled = true
-    const val shrinkResourcesEnabled = true
 }

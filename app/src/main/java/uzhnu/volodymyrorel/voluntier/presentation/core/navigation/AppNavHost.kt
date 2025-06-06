@@ -15,9 +15,9 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_answer.Crea
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request.CreateNewRequestRoute
 import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainScreenConstants
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageRoute
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageScreenConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.MainConstants
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.OrgPageRoute
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.OrgPageConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashConstants
 import uzhnu.volodymyrorel.voluntier.presentation.feature.splash.SplashRoute
 
@@ -41,13 +41,13 @@ fun AppNavHost(navHostController: NavHostController) {
         composable<SignUpConstants.Args> {
             SignUpRoute()
         }
-        composable<MainScreenConstants.Args> {
+        composable<MainConstants.Args> {
             MainRoute()
         }
         composable<CreateNewRequestConstants.Args> {
             CreateNewRequestRoute()
         }
-        composable<OrgPageScreenConstants.Args> {
+        composable<OrgPageConstants.Args> {
             OrgPageRoute()
         }
         composable<CreateNewAnswerConstants.Args> {

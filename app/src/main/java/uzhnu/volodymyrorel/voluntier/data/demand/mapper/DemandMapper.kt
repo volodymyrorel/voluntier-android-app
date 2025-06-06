@@ -6,11 +6,9 @@ import uzhnu.volodymyrorel.voluntier.domain.utils.ktx.toLocalDateTime
 import javax.inject.Inject
 
 class DemandMapper @Inject constructor() {
-
     fun mapToDemand(documents: List<DocumentSnapshot>) : List<Demand> {
         return documents.map { mapToDemand(it) }
     }
-
     fun mapToDemand(document: DocumentSnapshot) : Demand {
         return Demand(
             uid = document.id,

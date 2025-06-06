@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,25 +21,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
 import uzhnu.volodymyrorel.voluntier.R
 import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.organizations.components.OrganizationItem
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.OrgPageStateUi.DemandUi
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components.FundraisingItem
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components.MaterialItem
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components.OrgPageHeader
-import uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page.components.VolunteersItem
-import kotlin.String
+import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components.FundraisingItem
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components.MaterialItem
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components.OrgPageHeader
+import uzhnu.volodymyrorel.voluntier.presentation.feature.org_page.components.VolunteersItem
 
 @Composable
 fun OrgPageRoute(

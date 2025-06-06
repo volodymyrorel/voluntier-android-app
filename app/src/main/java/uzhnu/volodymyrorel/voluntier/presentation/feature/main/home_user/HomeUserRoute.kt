@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -19,13 +18,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.components.AnswerItem
 import uzhnu.volodymyrorel.voluntier.R
+import uzhnu.volodymyrorel.voluntier.presentation.feature.main.home_user.components.AnswerItem
 
 const val homeUserRoute = "homeUserRoute"
 
@@ -45,16 +43,6 @@ fun HomeUserRoute(
 fun HomeUserScreen(
     state: HomeUserStateUi
 ) {
-//    Column (
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        Text("HomeScreen")
-//        Button(
-//            onClick = onCreateRequestClicked
-//        ) {
-//            Text(text = "Create request")
-//        }
-//    }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -64,17 +52,6 @@ fun HomeUserScreen(
                         style = MaterialTheme.typography.titleLarge
                     )
                 },
-//                actions = {
-//                    IconButton(
-//                        onClick = onCreateRequestClicked
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Default.Add,
-//                            contentDescription = null
-//                        )
-//                    }
-//                }
-//                ,
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             )
         }
@@ -88,8 +65,6 @@ fun HomeUserScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(state.answers) { answer ->
-//                Text(answer.demandTitle)
-//                HorizontalDivider()
                 AnswerItem(answer)
             }
         }

@@ -1,7 +1,5 @@
 package uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request
 
-import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
-
 data class CreateNewRequestStateUi(
     val type: String?,
     val title: String,

@@ -25,19 +25,15 @@ fun MainNavHost(
         navController = navController,
         startDestination = if (role == "user") homeUserRoute else homeOrgRoute
     ) {
-
         composable(homeUserRoute) {
             HomeUserRoute()
         }
-
         composable(homeOrgRoute) {
             HomeOrgRoute()
         }
-
         composable(organizationsRoute) {
             OrganizationsRoute()
         }
-
         composable(profileRoute) {
             ProfileRoute()
         }

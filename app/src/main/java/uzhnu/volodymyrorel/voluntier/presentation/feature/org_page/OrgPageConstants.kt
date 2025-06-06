@@ -1,8 +1,8 @@
-package uzhnu.volodymyrorel.voluntier.presentation.feature.organization_page
+package uzhnu.volodymyrorel.voluntier.presentation.feature.org_page
 
 import kotlinx.serialization.Serializable
 
-object OrgPageScreenConstants {
+object OrgPageConstants {
 
     @Serializable
     data class Args(

@@ -9,7 +9,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
@@ -18,7 +17,7 @@ import uzhnu.volodymyrorel.voluntier.presentation.feature.main.components.MainNa
 
 @Composable
 fun MainRoute(
-    viewModel: MainScreenViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel()
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -32,9 +31,7 @@ fun MainRoute(
 fun MainScreen(
     state: MainStateUi
 ) {
-
     val navController = rememberNavController()
-
     Scaffold(
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
         bottomBar = {

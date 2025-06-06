@@ -5,7 +5,6 @@ package uzhnu.volodymyrorel.voluntier.presentation.feature.create_new_request
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,10 +34,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import uzhnu.volodymyrorel.voluntier.R
 import uzhnu.volodymyrorel.voluntier.domain.demand.entity.Demand
 import uzhnu.volodymyrorel.voluntier.presentation.core.components.ObserveSingleEvent
 import uzhnu.volodymyrorel.voluntier.presentation.core.theme.AppTheme
-import uzhnu.volodymyrorel.voluntier.R
 
 @Composable
 fun CreateNewRequestRoute(

@@ -7,11 +7,9 @@ import java.time.LocalDateTime
 import javax.inject.Inject
 
 class AnswerMapper @Inject constructor() {
-
     fun mapToAnswer(documents: List<DocumentSnapshot>) : List<Answer> {
         return documents.map { mapToAnswer(it) }
     }
-
     fun mapToAnswer(document: DocumentSnapshot) : Answer {
         return Answer(
             id = document.id,
